@@ -4,3 +4,6 @@ print(a)
 
 print(a.isalpha())
 
+name = "Fake Python"
+name = name.replace("Fake", "Real")
+print(f'{name}')
