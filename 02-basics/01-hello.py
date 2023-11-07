@@ -23,3 +23,10 @@ print(num1)
 my_var_name = 10;
 my_var_name *=10;
 print (my_var_name)
+
+print("\nword length:")
+print(len('my word here'))
+
+print (abs(-50.43))
+
+print (max([100,2,3,7,3,99]))
