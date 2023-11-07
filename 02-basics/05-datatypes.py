@@ -13,3 +13,11 @@
 #dictionary (js object)
 a={'a':1,'b':5,'c':'hello'}
 print (a['c'])
+
+
+print(type(1))
+print(type(a))
+
+print ('quotes "in" quotes')
+print ('\n\nhi')
+
