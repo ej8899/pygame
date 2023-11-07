@@ -19,3 +19,7 @@ num1 = 10;
 num1 = 10+5;
 num1 +=10;
 print(num1)
+
+my_var_name = 10;
+my_var_name *=10;
+print (my_var_name)
