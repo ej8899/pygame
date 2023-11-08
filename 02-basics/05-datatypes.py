@@ -21,3 +21,10 @@ print(type(a))
 print ('quotes "in" quotes')
 print ('\n\nhi')
 
+name = 'bob'
+age = 40
+greeting = f'Hello {name}, you are {age} years old.'
+greeting2 = 'hello {}, you are {} years of age'.format(name,age)
+print(greeting)
+print(greeting2)
+
