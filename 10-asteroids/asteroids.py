@@ -1,5 +1,6 @@
 import pygame, sys
 
+# GAME INI
 pygame.init()
 
 WINDOW_WIDTH = 1280
@@ -29,7 +30,7 @@ def writeCentered(text, x, y, color="Coral",):
 
 
 
-# image imports
+# IMAGE IMPORTS
 ship_surf = pygame.image.load('./graphics/ship.png').convert_alpha(); # for alpha transparencies - or just .convert() if not.
 ship_rect = ship_surf.get_rect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 ship_x_pos = 300;
@@ -37,39 +38,39 @@ ship_y_pos = 500;
 
 background_surf = pygame.image.load('./graphics/background.png').convert();
 
-# font imports
+laser_surf = pygame.image.load('./graphics/laser.png').convert_alpha();
+laser_rect = laser_surf.get_rect(midbottom = (ship_rect.midtop))
+
+# FONT IMPORTS
 font = pygame.font.Font('./graphics/subatomic.ttf', 50);
-# text_surf = font.render(GAME_TITLE, True, pygame.Color('darkorange')); # text, antialiasing (true or false), color
-# text_rect = text_surf.get_rect(center=(WINDOW_WIDTH/2,680))
-
-
 text_surf, text_rect = writeCentered(GAME_TITLE, 0, 680,'darkorange') # this will be centered anyhow, but at 10 height
 
-# start our game loop
+# GAME LOOP
 while True:
-    # check for input events
+    # EVENT LOOP
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit();
             sys.exit();
-        if event.type == pygame.MOUSEMOTION:
-            # print(event.pos)
-            # print(event.buttons)
-            # print(event.rel)
-            ship_rect.center = event.pos
-        if event.type == pygame.MOUSEBUTTONUP:
-            print('shoot!')
     
     # framerate limit
     clock.tick(GAME_FRAMERATE);
 
-    # update game parts
+    # mouse input
+    # print(pygame.mouse.get_pos()); #returns (x,y)
+    ship_rect.center = pygame.mouse.get_pos();
+    print(pygame.mouse.get_pressed()); #returns (left,middle,right)
 
-    # place graphics
+    # UPDATES
+    laser_rect.y -= 10
+
+    # DRAWING
     display_surface.fill(pygame.Color('grey46'))
     display_surface.blit(background_surf,(0,0))
     display_surface.blit(ship_surf,ship_rect)
     display_surface.blit(text_surf,text_rect)
+    display_surface.blit(laser_surf,laser_rect)
+
 
     # show display surface
     pygame.display.update()
