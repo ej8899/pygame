@@ -8,6 +8,7 @@ GAME_TITLE = "Asteroid Shooter"
 
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 display_surface.fill(pygame.Color('azure1'))
+# display_surface.fill((255,0,255)) # as RGB
 
 pygame.display.set_caption(GAME_TITLE)
 
