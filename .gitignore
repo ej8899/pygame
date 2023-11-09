@@ -1,4 +1,4 @@
-*.asteroid_shooter_files/
+./10-asteroids/asteroid_shooter_files/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
