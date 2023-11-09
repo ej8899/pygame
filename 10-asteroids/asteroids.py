@@ -4,6 +4,7 @@ pygame.init()
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
+GAME_FRAMERATE = 120
 GAME_TITLE = "Asteroid Shooter"
 
 
@@ -51,9 +52,16 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit();
             sys.exit();
+        if event.type == pygame.MOUSEMOTION:
+            # print(event.pos)
+            # print(event.buttons)
+            # print(event.rel)
+            ship_rect.center = event.pos
+        if event.type == pygame.MOUSEBUTTONUP:
+            print('shoot!')
     
     # framerate limit
-    clock.tick(120);
+    clock.tick(GAME_FRAMERATE);
 
     # update game parts
 
