@@ -1,18 +1,17 @@
 import pygame, sys
 
+# important references:
+# color list: https://www.pygame.org/docs/ref/color_list.html
+
+
 # GAME INI
-pygame.init()
+# pygame.init() 
+pygame.font.init()
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 GAME_FRAMERATE = 120
 GAME_TITLE = "Asteroid Shooter"
-
-
-# important references:
-# color list: https://www.pygame.org/docs/ref/color_list.html
-
-
 
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 display_surface.fill(pygame.Color('grey46'))
