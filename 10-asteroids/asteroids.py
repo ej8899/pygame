@@ -5,7 +5,9 @@ import pygame, sys
 
 
 # GAME INI
+# we could init everything, but it takes time to run:
 # pygame.init() 
+# only init what we're using for performance purposes:
 pygame.font.init()
 
 WINDOW_WIDTH = 1280
@@ -27,6 +29,12 @@ def writeCentered(text, x, y, color="Coral",):
     text_rect = text.get_rect(center=(WINDOW_WIDTH//2, y))
     return text, text_rect
 
+# update lasers
+def laser_update(laser_list, speed = 300):
+    for rect in laser_list:
+        rect.y -= speed * DELTA_TIME
+        if(rect.bottom < 0):
+            laser_list.remove(rect)
 
 
 # IMAGE IMPORTS
@@ -38,7 +46,8 @@ ship_y_pos = 500;
 background_surf = pygame.image.load('./graphics/background.png').convert();
 
 laser_surf = pygame.image.load('./graphics/laser.png').convert_alpha();
-laser_rect = laser_surf.get_rect(midbottom = (ship_rect.midtop))
+laser_list = []
+# laser_rect = laser_surf.get_rect(midbottom = (ship_rect.midtop))
 
 # FONT IMPORTS
 font = pygame.font.Font('./graphics/subatomic.ttf', 50);
@@ -51,25 +60,29 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit();
             sys.exit();
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            laser_rect = laser_surf.get_rect(midbottom = ship_rect.midtop)
+            laser_list.append(laser_rect)
+            # print(laser_list)
     
     # framerate limit
-    clock.tick(GAME_FRAMERATE);
+    DELTA_TIME = clock.tick(GAME_FRAMERATE) / 1000;
+  
 
-    # mouse input
-    # print(pygame.mouse.get_pos()); #returns (x,y)
-    ship_rect.center = pygame.mouse.get_pos();
-    print(pygame.mouse.get_pressed()); #returns (left,middle,right)
-
+  
     # UPDATES
-    laser_rect.y -= 10
-
+    laser_update(laser_list)
+    ship_rect.center = pygame.mouse.get_pos();
+    
     # DRAWING
     display_surface.fill(pygame.Color('grey46'))
     display_surface.blit(background_surf,(0,0))
     display_surface.blit(ship_surf,ship_rect)
     display_surface.blit(text_surf,text_rect)
-    display_surface.blit(laser_surf,laser_rect)
 
+    # draw the lasers
+    for rect in laser_list:
+        display_surface.blit(laser_surf,rect)
 
     # show display surface
     pygame.display.update()
